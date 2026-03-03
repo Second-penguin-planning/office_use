@@ -199,6 +199,14 @@
             .nav-links { display: none; } /* ハンバーガーメニューは簡略化のため今回省略、必要に応じ実装 */
             .hero h2 { font-size: 1.6rem; }
         }
+.btn-messenger {
+    background: linear-gradient(135deg, #00B2FF, #006AFF);
+}
+/* Messengerボタンを浮遊させるために位置を調整 */
+.floating-contact {
+    bottom: 20px;
+    right: 20px;
+}
     </style>
 </head>
 <body>
@@ -255,13 +263,16 @@
         <h3 class="section-title" data-i18n="nav_office">事務所アクセス</h3>
         <div class="card" style="padding:0; overflow:hidden;">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.025340156715!2d135.26748437632!3d34.69194217292419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008f10f81f185d%3A0xc348507567794396!2z56We5oi4576p57u_44OV44Kh44OD44K344On44Oz44Oe44O844OIdA!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp" 
+                src="https://www.google.com.ua/maps/place/%E7%A5%9E%E6%88%B8%E3%83%95%E3%82%A1%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9E%E3%83%BC%E3%83%88/@34.6891873,135.2656894,17z/data=!3m2!4b1!5s0x60008d7bbb2ed7f1:0xdd4378cbbcb347a4!4m6!3m5!1s0x60008d7bb04fc9df:0xf1dafee345c53a8d!8m2!3d34.6891829!4d135.2682643!16s%2Fg%2F12q4qt3yz?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D" 
                 width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 </section>
 
 <div class="floating-contact">
+    <a href="https://m.me/346096188583202" target="_blank" class="sns-btn btn-messenger">
+        <i class="fab fa-facebook-messenger"></i> <span data-i18n="sns_messenger">Messengerで相談</span>
+    </a>
     <a href="https://line.me/R/oaMessage/@556fihjp/" target="_blank" class="sns-btn btn-line">
         <i class="fab fa-line"></i> <span data-i18n="sns_line">LINE相談</span>
     </a>
@@ -271,7 +282,33 @@
 </div>
 
 <script>
-    // 翻訳データの一元管理
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "346096188583202"); // 文字列ではなくIDを直接入れる
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<script>
+ const translations = {
+    jp: {
+        // ...既存のデータ
+        sns_messenger: "Messenger相談",
+        sns_line: "LINE相談",
+        sns_fb: "Facebook"
+    },
+    en: {
+        // ...既存のデータ
+        sns_messenger: "Messenger",
+        sns_line: "LINE",
+        sns_fb: "Facebook"
+    },
+    tl: {
+        // ...既存のデータ
+        sns_messenger: "Mag-chat sa Messenger",
+        sns_line: "Mag-chat sa LINE",
+        sns_fb: "Facebook"
+    }
+};   
+// 翻訳データの一元管理
     const translations = {
         jp: {
             office_name: "徳永良雄行政書士事務所",
@@ -349,6 +386,32 @@
         // 3. HTMLのlang属性を更新（SEO対策）
         document.documentElement.lang = lang;
     }
+</script>
+
+<div id="fb-root"></div>
+<div id="fb-customer-chat" class="fb-customerchat"></div>
+<a href="https://m.me/346096188583202" target="_blank" class="sns-btn btn-messenger">
+    <i class="fab fa-facebook-messenger"></i> <span data-i18n="sns_messenger">Messengerで相談</span>
+</a>
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "あなたのページID"); //346096188583202
+  chatbox.setAttribute("attribution", "biz_inbox");
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v18.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/ja_JP/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>
