@@ -17,7 +17,6 @@
             --bg-light: #f8fafc;
             --white: #ffffff;
             --text-main: #1a1a1a;
-            --danger: #d32f2f;
         }
 
         body {
@@ -54,38 +53,14 @@
             text-decoration: none;
         }
 
-        .header-logo h1 {
-            font-size: 1.1rem;
-            margin: 0;
-            font-weight: 700;
-        }
+        .header-logo h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+        .header-logo img { height: 35px; width: auto; }
 
-        .header-logo img {
-            height: 35px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
-        /* --- Language Switcher --- */
-        .lang-switcher {
-            display: flex;
-            gap: 5px;
-        }
-
+        .lang-switcher { display: flex; gap: 5px; }
         .lang-btn {
             background: transparent;
             border: 1px solid rgba(255,255,255,0.5);
@@ -95,34 +70,17 @@
             cursor: pointer;
             font-size: 0.75rem;
         }
+        .lang-btn.active { background: var(--accent); border-color: var(--accent); }
 
-        .lang-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        /* --- Hero Section --- */
+        /* --- Hero --- */
         .hero {
             background: linear-gradient(135deg, var(--primary), #34495e);
             color: white;
             padding: 80px 5%;
             text-align: center;
         }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
         .hero h2 { font-size: 2.2rem; margin-bottom: 20px; line-height: 1.3; }
         .hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-
-        .cta-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
 
         .btn {
             padding: 15px 35px;
@@ -132,43 +90,21 @@
             transition: 0.3s;
             display: inline-block;
         }
-
         .btn-primary { background: var(--accent); color: white; }
         .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-        /* --- Section Common --- */
+        /* --- Sections --- */
         section { padding: 80px 5%; }
         .container { max-width: 1100px; margin: 0 auto; }
-        h3.section-title {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 50px;
-            position: relative;
-        }
+        h3.section-title { text-align: center; font-size: 1.8rem; margin-bottom: 50px; }
         h3.section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            margin: 15px auto;
+            content: ''; display: block; width: 50px; height: 3px; background: var(--accent); margin: 15px auto;
         }
 
-        /* --- Grid System --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        /* --- Floating UI --- */
+        /* --- Floating Contact (Messenger & LINE) --- */
         .floating-contact {
             position: fixed;
             bottom: 20px;
@@ -189,24 +125,17 @@
             text-decoration: none;
             font-weight: 700;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
-
+        .sns-btn:hover { transform: scale(1.05); }
+        .btn-messenger { background: linear-gradient(135deg, #00B2FF, #006AFF); }
         .btn-line { background: #06C755; }
         .btn-fb { background: #1877f2; }
 
-        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* ハンバーガーメニューは簡略化のため今回省略、必要に応じ実装 */
+            .nav-links { display: none; }
             .hero h2 { font-size: 1.6rem; }
         }
-.btn-messenger {
-    background: linear-gradient(135deg, #00B2FF, #006AFF);
-}
-/* Messengerボタンを浮遊させるために位置を調整 */
-.floating-contact {
-    bottom: 20px;
-    right: 20px;
-}
     </style>
 </head>
 <body>
@@ -218,7 +147,6 @@
     </a>
     <nav class="nav-links">
         <a href="#services" data-i18n="nav_services">業務内容</a>
-        <a href="#pricing" data-i18n="nav_pricing">料金表</a>
         <a href="#contact" data-i18n="nav_contact">お問い合わせ</a>
     </nav>
     <div class="lang-switcher">
@@ -233,7 +161,7 @@
         <h2 data-i18n="hero_title">フィリピン人 特定技能 専門サポート<br>全国対応の行政書士</h2>
         <p data-i18n="hero_sub">31年の公務員経験と国際経験を活かし、複雑な在留資格申請をワンストップで支援します。</p>
         <div class="cta-group">
-            <a href="#contact" class="btn btn-primary" data-i18n="btn_consult">無料相談を申し込む</a>
+            <a href="https://m.me/346096188583202" class="btn btn-primary" data-i18n="btn_consult">無料相談を申し込む</a>
         </div>
     </div>
 </section>
@@ -248,7 +176,7 @@
             </div>
             <div class="card">
                 <h4 data-i18n="service2_title">フィリピン送出機関対応</h4>
-                <p data-i18n="service2_text">MWO（旧POLO）やDMW（旧POEA）に関連する複雑な書類作成を代行します。</p>
+                <p data-i18n="service2_text">MWOやDMWに関連する書類作成を代行します。</p>
             </div>
             <div class="card">
                 <h4 data-i18n="service3_title">在留資格申請代行</h4>
@@ -263,7 +191,7 @@
         <h3 class="section-title" data-i18n="nav_office">事務所アクセス</h3>
         <div class="card" style="padding:0; overflow:hidden;">
             <iframe 
-                src="https://www.google.com.ua/maps/place/%E7%A5%9E%E6%88%B8%E3%83%95%E3%82%A1%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9E%E3%83%BC%E3%83%88/@34.6891873,135.2656894,17z/data=!3m2!4b1!5s0x60008d7bbb2ed7f1:0xdd4378cbbcb347a4!4m6!3m5!1s0x60008d7bb04fc9df:0xf1dafee345c53a8d!8m2!3d34.6891829!4d135.2682643!16s%2Fg%2F12q4qt3yz?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3280.0163351984245!2d135.2656894116487!3d34.68918287280829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008d7bb04fc9df%3A0xf1dafee345c53a8d!2z56We5oi4576p6KGT5qOf56S-6KaB56S-!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" 
                 width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
@@ -271,49 +199,22 @@
 
 <div class="floating-contact">
     <a href="https://m.me/346096188583202" target="_blank" class="sns-btn btn-messenger">
-        <i class="fab fa-facebook-messenger"></i> <span data-i18n="sns_messenger">Messengerで相談</span>
+        <i class="fab fa-facebook-messenger"></i> <span data-i18n="sns_messenger">Messenger相談</span>
     </a>
     <a href="https://line.me/R/oaMessage/@556fihjp/" target="_blank" class="sns-btn btn-line">
         <i class="fab fa-line"></i> <span data-i18n="sns_line">LINE相談</span>
     </a>
-    <a href="https://facebook.com/..." target="_blank" class="sns-btn btn-fb">
-        <i class="fab fa-facebook"></i> <span data-i18n="sns_fb">Facebook</span>
-    </a>
 </div>
 
-<script>
-  var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "346096188583202"); // 文字列ではなくIDを直接入れる
-  chatbox.setAttribute("attribution", "biz_inbox");
-</script>
+<div id="fb-root"></div>
+<div id="fb-customer-chat" class="fb-customerchat"></div>
 
 <script>
- const translations = {
-    jp: {
-        // ...既存のデータ
-        sns_messenger: "Messenger相談",
-        sns_line: "LINE相談",
-        sns_fb: "Facebook"
-    },
-    en: {
-        // ...既存のデータ
-        sns_messenger: "Messenger",
-        sns_line: "LINE",
-        sns_fb: "Facebook"
-    },
-    tl: {
-        // ...既存のデータ
-        sns_messenger: "Mag-chat sa Messenger",
-        sns_line: "Mag-chat sa LINE",
-        sns_fb: "Facebook"
-    }
-};   
-// 翻訳データの一元管理
+    // 翻訳データの一元管理（修正：一箇所にまとめました）
     const translations = {
         jp: {
             office_name: "徳永良雄行政書士事務所",
             nav_services: "業務内容",
-            nav_pricing: "料金表",
             nav_contact: "お問い合わせ",
             nav_office: "事務所アクセス",
             hero_title: "フィリピン人 特定技能 専門サポート<br>全国対応の行政書士",
@@ -322,96 +223,81 @@
             service1_title: "組合顧問・企業サポート",
             service1_text: "技能実習から特定技能への移行や、複雑な受入体制の構築を継続的にサポートします。",
             service2_title: "フィリピン送出機関対応",
-            service2_text: "MWO（旧POLO）やDMW（旧POEA）に関連する複雑な書類作成を代行します。",
+            service2_text: "MWOやDMWに関連する複雑な書類作成を代行します。",
             service3_title: "在留資格申請代行",
             service3_text: "認定、変更、更新の全てのステップを、申請取次行政書士が確実に遂行します。",
-            sns_line: "LINE相談",
-            sns_fb: "Facebook"
+            sns_messenger: "Messenger相談",
+            sns_line: "LINE相談"
         },
         en: {
             office_name: "Tokunaga Yoshio Office",
             nav_services: "Services",
-            nav_pricing: "Pricing",
             nav_contact: "Contact",
             nav_office: "Access",
             hero_title: "Visa Support for Filipinos<br>Specialized in Specified Skilled Worker",
             hero_sub: "Comprehensive support for visa applications with 31 years of government experience.",
             btn_consult: "Free Consultation",
             service1_title: "Corporate Support",
-            service1_text: "Continuous support for companies and organizations hiring foreign workers.",
+            service1_text: "Continuous support for companies hiring foreign workers.",
             service2_title: "MWO / DMW Support",
-            service2_text: "Assistance with complex documents for the Philippine Embassy and DMW.",
+            service2_text: "Assistance with complex documents for the Philippine Embassy.",
             service3_title: "Visa Application",
             service3_text: "Professional handling of CoE, Change of Status, and Renewals.",
-            sns_line: "LINE Inquiry",
-            sns_fb: "Facebook"
+            sns_messenger: "Messenger",
+            sns_line: "LINE"
         },
         tl: {
             office_name: "Tokunaga Yoshio Office",
             nav_services: "Serbisyo",
-            nav_pricing: "Presyo",
             nav_contact: "Contact",
             nav_office: "Lugar",
             hero_title: "Suporta sa Visa para sa Pilipino<br>Espesyalista sa Specified Skilled Worker",
-            hero_sub: "Komprehensibong suporta sa visa application gamit ang 31 taong karanasan sa gobyerno.",
+            hero_sub: "Komprehensibong suporta sa visa application gamit ang 31 taong karanasan.",
             btn_consult: "Libreng Konsultasyon",
             service1_title: "Suporta sa Kumpanya",
             service1_text: "Patuloy na suporta para sa mga kumpanya at organisasyon.",
             service2_title: "MWO / DMW Support",
-            service2_text: "Tulong sa mga dokumento para sa Philippine Embassy at DMW.",
+            service2_text: "Tulong sa mga dokumento para sa Philippine Embassy.",
             service3_title: "Visa Application",
             service3_text: "Propesyonal na pag-aasikaso ng CoE at Renewal ng Visa.",
-            sns_line: "Mag-chat sa LINE",
-            sns_fb: "Facebook"
+            sns_messenger: "Messenger",
+            sns_line: "LINE"
         }
     };
 
     function switchLang(lang) {
-        // 1. 全ての対象要素を更新
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
+            if (translations[lang] && translations[lang][key]) {
                 el.innerHTML = translations[lang][key];
             }
         });
 
-        // 2. ボタンの活性状態を更新
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.remove('active');
             if (btn.innerText.toLowerCase() === lang.toLowerCase()) {
                 btn.classList.add('active');
             }
         });
-
-        // 3. HTMLのlang属性を更新（SEO対策）
         document.documentElement.lang = lang;
     }
-</script>
 
-<div id="fb-root"></div>
-<div id="fb-customer-chat" class="fb-customerchat"></div>
-<a href="https://m.me/346096188583202" target="_blank" class="sns-btn btn-messenger">
-    <i class="fab fa-facebook-messenger"></i> <span data-i18n="sns_messenger">Messengerで相談</span>
-</a>
-<script>
-  var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "あなたのページID"); //346096188583202
-  chatbox.setAttribute("attribution", "biz_inbox");
+    // Facebook Chat SDK
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "346096188583202"); 
+    chatbox.setAttribute("attribution", "biz_inbox");
 
-  window.fbAsyncInit = function() {
-    FB.init({
-      xfbml            : true,
-      version          : 'v18.0'
-    });
-  };
+    window.fbAsyncInit = function() {
+        FB.init({ xfbml: true, version: 'v18.0' });
+    };
 
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/ja_JP/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/ja_JP/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>
