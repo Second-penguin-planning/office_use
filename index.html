@@ -1,38 +1,564 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById("hamburger");
-    const nav = document.getElementById("nav");
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    // ハンバーガーメニューの開閉
-    if (hamburger && nav) {
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            nav.classList.toggle("show");
-        });
+<title>フィリピン特定技能ビザ申請専門｜全国対応｜徳永行政書士事務所</title>
 
-        // メニューリンククリック時に閉じる
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove("active");
-                nav.classList.remove("show");
-            });
-        });
-    }
+<meta name="description" content="フィリピン人の特定技能ビザ申請、在留資格変更、登録支援機関サポートまで全国対応。">
 
-    // スムーズスクロール
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 90;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
+<style>
+
+/* ===============================
+変数
+===============================*/
+
+:root{
+--primary:#1f2f3a;
+--accent:#b89b5e;
+--bg-light:#f3f4f5;
+--text-main:#1a1a1a;
+--text-sub:#555;
+--white:#ffffff;
+--border:#e2e4e7;
+}
+
+/* ===============================
+基本
+===============================*/
+
+body{
+margin:0;
+padding:90px 0 0 0;
+font-family:'Noto Sans JP',sans-serif;
+line-height:1.8;
+background:var(--bg-light);
+color:var(--text-main);
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:0 20px;
+}
+
+h1,h2,h3{
+margin-top:0;
+}
+
+/* ===============================
+ヘッダー
+===============================*/
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:1rem 1.2rem;
+background:var(--primary);
+color:white;
+z-index:1000;
+}
+
+.header-logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:700;
+}
+
+.header-logo img{
+height:32px;
+}
+
+.header-nav{
+display:flex;
+gap:1.4rem;
+}
+
+.header-nav a{
+color:white;
+text-decoration:none;
+font-size:0.95rem;
+}
+
+.header-nav a:hover{
+color:var(--accent);
+}
+
+.business-link{
+font-size:0.8rem;
+opacity:.7;
+}
+
+.lang-switch{
+display:flex;
+gap:5px;
+margin-left:10px;
+}
+
+.lang-btn{
+border:1px solid rgba(255,255,255,0.5);
+padding:3px 8px;
+border-radius:4px;
+font-size:12px;
+color:white;
+text-decoration:none;
+}
+
+.lang-btn.active{
+background:var(--accent);
+border-color:var(--accent);
+}
+
+/* ===============================
+ハンバーガー
+===============================*/
+
+.hamburger{
+display:none;
+flex-direction:column;
+gap:5px;
+cursor:pointer;
+}
+
+.hamburger span{
+width:25px;
+height:3px;
+background:white;
+}
+
+/* ===============================
+ヒーロー
+===============================*/
+
+.hero{
+background:linear-gradient(135deg,#1f2f3a,#2f3f4c);
+color:white;
+padding:5rem 1rem;
+}
+
+.hero-inner{
+display:flex;
+gap:40px;
+max-width:1200px;
+margin:auto;
+align-items:center;
+}
+
+.hero-left{
+flex:2;
+}
+
+.hero h1{
+font-size:2rem;
+}
+
+.hero-sub{
+font-size:1.1rem;
+margin-bottom:20px;
+}
+
+.cta-button{
+display:inline-block;
+background:var(--accent);
+padding:15px 40px;
+border-radius:40px;
+color:white;
+font-weight:bold;
+text-decoration:none;
+margin-top:15px;
+}
+
+.hero-news-box{
+background:white;
+color:black;
+padding:25px;
+border-radius:10px;
+width:350px;
+}
+
+.hero-news-box h3{
+margin-top:0;
+}
+
+.hero-news-box ul{
+list-style:none;
+padding:0;
+}
+
+.hero-news-box li{
+margin-bottom:10px;
+font-size:0.9rem;
+}
+
+/* ===============================
+セクション
+===============================*/
+
+section{
+padding:60px 0;
+}
+
+.bg-light-section{
+background:var(--bg-light);
+}
+
+.bg-accent-section{
+background:#f7f6f2;
+}
+
+/* ===============================
+カード
+===============================*/
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* ===============================
+料金
+===============================*/
+
+.price-tag{
+font-size:1.4rem;
+font-weight:bold;
+color:var(--accent);
+}
+
+/* ===============================
+プロフィール
+===============================*/
+
+.profile-container{
+display:flex;
+gap:40px;
+align-items:center;
+}
+
+.profile-photo img{
+width:220px;
+border-radius:10px;
+}
+
+/* ===============================
+事務所
+===============================*/
+
+.office-wrapper{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.office-info{
+list-style:none;
+padding:0;
+}
+
+.office-info li{
+margin-bottom:12px;
+}
+
+/* ===============================
+CTA
+===============================*/
+
+.cta-section{
+background:var(--primary);
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.btn-white{
+background:white;
+color:black;
+padding:12px 30px;
+border-radius:30px;
+text-decoration:none;
+display:inline-block;
+margin-top:15px;
+}
+
+/* ===============================
+SNS固定
+===============================*/
+
+.sns-fixed{
+position:fixed;
+bottom:20px;
+right:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:999;
+}
+
+.sns-btn-wide{
+padding:10px 15px;
+border-radius:30px;
+color:white;
+text-decoration:none;
+font-size:14px;
+}
+
+.line-btn{
+background:#06c755;
+}
+
+.facebook-btn{
+background:#1877f2;
+}
+
+/* ===============================
+TOPボタン
+===============================*/
+
+.back-to-top{
+position:fixed;
+bottom:20px;
+left:20px;
+background:var(--primary);
+color:white;
+padding:10px 15px;
+border-radius:20px;
+text-decoration:none;
+font-size:13px;
+}
+
+/* ===============================
+フッター
+===============================*/
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:40px 20px;
+}
+
+/* ===============================
+スマホ
+===============================*/
+
+@media(max-width:900px){
+
+.hero-inner{
+flex-direction:column;
+}
+
+.header-nav{
+display:none;
+position:absolute;
+top:70px;
+left:0;
+background:var(--primary);
+width:100%;
+flex-direction:column;
+padding:20px;
+}
+
+.header-nav.active{
+display:flex;
+}
+
+.hamburger{
+display:flex;
+}
+
+.profile-container{
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-logo">
+<img src="gyosei_logo_192.png">
+<span>德永良雄 行政書士事務所</span>
+</div>
+
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav class="header-nav" id="nav">
+<a href="#for-company">企業様へ</a>
+<a href="#for-worker">フィリピン人の方へ</a>
+<a href="#pricing">料金</a>
+<a href="#office">事務所</a>
+<a href="#contact">お問い合わせ</a>
+<a href="https://second-penguin-planning.github.io/member/" target="_blank" class="business-link">🔒 業務用</a>
+</nav>
+
+<div class="lang-switch">
+<a href="#" class="lang-btn active">JP</a>
+<a href="#" class="lang-btn">EN</a>
+<a href="#" class="lang-btn">TL</a>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<div class="hero-left">
+
+<h1>フィリピン人特定技能ビザ申請専門</h1>
+
+<p class="hero-sub">
+全国対応の行政書士
+</p>
+
+<a href="#contact" class="cta-button">
+無料相談はこちら
+</a>
+
+</div>
+
+<div class="hero-news-box">
+
+<h3>お知らせ</h3>
+
+<ul>
+<li>2026.03.01 特定技能ビザ情報更新</li>
+<li>2026.02.20 フィリピン相談強化</li>
+<li>2026.02.05 組合顧問受付開始</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="for-company">
+
+<div class="container">
+
+<h2>企業・組合様向けサポート</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>組合顧問契約</h3>
+<p>技能実習から特定技能移行まで継続支援。</p>
+</div>
+
+<div class="card">
+<h3>特定技能フルサポート</h3>
+<p>申請から支援機関連携まで一括対応。</p>
+</div>
+
+<div class="card">
+<h3>フィリピン送出機関</h3>
+<p>DMW手続きサポート。</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact" class="bg-light-section">
+
+<div class="container">
+
+<h2>お問い合わせ</h2>
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJPYhr5yeNR1IyZvTHCWVO5s_os7ff83NjhB02nPmMgARSmA/viewform?embedded=true"
+width="100%" height="800"></iframe>
+
+</div>
+
+</section>
+
+
+<div class="sns-fixed">
+
+<a href="https://line.me/R/oaMessage/@556fihjp/" target="_blank" class="sns-btn-wide line-btn">
+<i class="fab fa-line"></i> LINE相談
+</a>
+
+<a href="https://www.facebook.com/second.penguin/" target="_blank" class="sns-btn-wide facebook-btn">
+<i class="fab fa-facebook-f"></i> Facebook
+</a>
+
+</div>
+
+
+<a href="#" class="back-to-top">TOP</a>
+
+
+<footer>
+
+<p>電話:070-9192-2524</p>
+<p>メール:info@tokunaga-gyosei.jp</p>
+
+<p>
+<a href="private.html" style="color:white;">プライバシーポリシー</a>
+</p>
+
+<p>© Tokunaga Administrative Scrivener Office</p>
+
+</footer>
+
+
+<script>
+
+/* ハンバーガー */
+
+const hamburger=document.getElementById("hamburger");
+const nav=document.getElementById("nav");
+
+hamburger.addEventListener("click",()=>{
+nav.classList.toggle("active");
 });
+
+
+/* TOPボタン */
+
+document.querySelector(".back-to-top").addEventListener("click",function(e){
+e.preventDefault();
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+});
+
+</script>
+
+</body>
+</html>
